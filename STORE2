@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>متجر يوسف الشمري لقطع الحاسوب</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: "Tajawal", sans-serif;
+            color: white;
+            overflow-x: hidden;
+        }
+        /* خلفية متحركة */
+        
+        @keyframes moveBg {
+            0% {
+                background-position: 0 0;
+            }
+            100% {
+                background-position: 1000px 1000px;
+            }
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+            background-size: 400% 400%;
+            animation: moveBg 20s linear infinite;
+        }
+        
+        header {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 15px;
+            text-align: center;
+            font-size: 22px;
+        }
+        
+        nav {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px;
+        }
+        
+        nav button {
+            margin: 10px;
+            padding: 10px 20px;
+            border: none;
+            background: #00b4d8;
+            color: white;
+            font-size: 16px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        
+        nav button:hover {
+            background: #0096c7;
+            transform: scale(1.1);
+        }
+        
+        section {
+            display: none;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .active {
+            display: block;
+        }
+        
+        .product {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 10px;
+            width: 220px;
+            transition: 0.3s;
+        }
+        
+        .product:hover {
+            transform: scale(1.05);
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .product img {
+            width: 100%;
+            border-radius: 10px;
+        }
+        
+        .admin-section {
+            display: none;
+            text-align: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.6);
+        }
+        
+        input,
+        select {
+            padding: 10px;
+            margin: 8px;
+            border-radius: 8px;
+            border: none;
+        }
+        
+        .cart-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px;
+            margin: 10px auto;
+            border-radius: 10px;
+            width: 50%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header id="title">🖥️ متجر يوسف الشمري لقطع الحاسوب</header>
+
+    <nav>
+        <button onclick="showSection('home')">🏠 الرئيسية</button>
+        <button onclick="showSection('cart')">🛒 سلة التسوق</button>
+        <button onclick="adminLogin()">⚙️ لوحة الإدارة</button>
+        <select id="lang" onchange="changeLanguage()">
+    <option value="ar">العربية</option>
+    <option value="en">English</option>
+  </select>
+    </nav>
+
+    <section id="home" class="active">
+        <h2 id="homeTitle">أحدث القطع</h2>
+        <div id="products"></div>
+    </section>
+
+    <section id="cart">
+        <h2>🛒 سلة التسوق</h2>
+        <div id="cartItems"></div>
+        <h3>معلومات الشراء</h3>
+        <input type="text" id="buyerName" placeholder="الاسم الكامل"><br>
+        <input type="text" id="buyerAddress" placeholder="العنوان"><br>
+        <input type="text" id="buyerPhone" placeholder="رقم الهاتف"><br>
+        <button onclick="completeOrder()">إكمال الطلب</button>
+    </section>
+
+    <section id="admin" class="admin-section">
+        <h2>لوحة الإدارة</h2>
+        <h3>إضافة منتج جديد</h3>
+        <input type="text" id="newName" placeholder="اسم القطعة">
+        <input type="text" id="newPrice" placeholder="السعر">
+        <select id="newCurrency">
+    <option value="IQD">دينار عراقي</option>
+    <option value="USD">دولار أمريكي</option>
+  </select>
+        <input type="text" id="newImage" placeholder="رابط الصورة">
+        <button onclick="addProduct()">إضافة المنتج</button>
+
+        <h3>تغيير مظهر الصفحة</h3>
+        <input type="color" id="bgColor" onchange="changeBg()">
+        <button onclick="hideAdmin()">خروج</button>
+    </section>
+
+    <script>
+        let products = [{
+            name: "معالج Ryzen 7",
+            price: "350",
+            currency: "USD",
+            img: "https://cdn.pocket-lint.com/r/s/970x/assets/images/156228-laptops-review-amd-ryzen-7-image1-3wfbzkm1pn.jpg"
+        }, {
+            name: "كرت شاشة RTX 4070",
+            price: "800",
+            currency: "USD",
+            img: "https://m.media-amazon.com/images/I/71D9ImsvEtL._AC_SL1500_.jpg"
+        }, {
+            name: "قرص SSD 1TB",
+            price: "55",
+            currency: "USD",
+            img: "https://m.media-amazon.com/images/I/61vGQNUEsGL._AC_SL1500_.jpg"
+        }];
+
+        let cart = [];
+
+        function showSection(id) {
+            document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            if (id === "home") displayProducts();
+            if (id === "cart") displayCart();
+        }
+
+        function displayProducts() {
+            const div = document.getElementById("products");
+            div.innerHTML = "";
+            products.forEach((p, i) => {
+                div.innerHTML += `
+      <div class='product'>
+        <img src='${p.img}' alt='${p.name}'>
+        <h3>${p.name}</h3>
+        <p>${p.price} ${p.currency}</p>
+        <button onclick='addToCart(${i})'>🛒 أضف للسلة</button>
+      </div>
+    `;
+            });
+        }
+
+        function addToCart(index) {
+            cart.push(products[index]);
+            alert("تمت إضافة المنتج إلى السلة!");
+        }
+
+        function displayCart() {
+            const div = document.getElementById("cartItems");
+            div.innerHTML = "";
+            cart.forEach((c, i) => {
+                div.innerHTML += `<div class='cart-item'>${c.name} - ${c.price} ${c.currency}</div>`;
+            });
+        }
+
+        function completeOrder() {
+            const name = document.getElementById("buyerName").value;
+            const address = document.getElementById("buyerAddress").value;
+            const phone = document.getElementById("buyerPhone").value;
+            if (!name || !address || !phone) {
+                alert("يرجى إدخال جميع المعلومات!");
+                return;
+            }
+            alert("✅ تم استلام الطلب! شكراً لتسوقك معنا.");
+            cart = [];
+            displayCart();
+        }
+
+        function adminLogin() {
+            const pass = prompt("أدخل رمز الإدارة:");
+            if (pass === "yy@55") {
+                showSection('admin');
+            } else {
+                alert("رمز غير صحيح!");
+            }
+        }
+
+        function addProduct() {
+            let name = document.getElementById("newName").value;
+            let price = document.getElementById("newPrice").value;
+            let img = document.getElementById("newImage").value;
+            let currency = document.getElementById("newCurrency").value;
+            if (name && price && img) {
+                products.push({
+                    name,
+                    price,
+                    currency,
+                    img
+                });
+                alert("تمت إضافة المنتج!");
+                displayProducts();
+            } else {
+                alert("يرجى إدخال جميع الحقول!");
+            }
+        }
+
+        function hideAdmin() {
+            showSection('home');
+        }
+
+        function changeBg() {
+            document.body.style.background = document.getElementById("bgColor").value;
+        }
+
+        function changeLanguage() {
+            const lang = document.getElementById("lang").value;
+            if (lang === "en") {
+                document.title = "Youssef Al-Shammari PC Parts Store";
+                document.getElementById("title").innerText = "🖥️ Youssef Al-Shammari PC Parts Store";
+                document.getElementById("homeTitle").innerText = "Latest Components";
+            } else {
+                document.title = "متجر يوسف الشمري لقطع الحاسوب";
+                document.getElementById("title").innerText = "🖥️ متجر يوسف الشمري لقطع الحاسوب";
+                document.getElementById("homeTitle").innerText = "أحدث القطع";
+            }
+        }
+
+        displayProducts();
+    </script>
+
+</body>
+
+</html>
