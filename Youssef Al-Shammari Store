@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>متجر يوسف الشمري</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Tajawal', sans-serif;
+            background: #121212;
+            color: #fff;
+            transition: 0.5s;
+        }
+        
+        header {
+            background: #1f1f1f;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        header h1 {
+            margin: 0;
+            font-size: 28px;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: center;
+            background: #222;
+            flex-wrap: wrap;
+        }
+        
+        nav button {
+            background: none;
+            border: none;
+            color: #fff;
+            padding: 14px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 0 5px;
+            transition: 0.3s;
+        }
+        
+        nav button.active,
+        nav button:hover {
+            background: #333;
+        }
+        
+        section {
+            display: none;
+            padding: 20px;
+            min-height: 80vh;
+        }
+        
+        section.active {
+            display: block;
+        }
+        
+        .card {
+            background: #1e1e1e;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 10px;
+            display: inline-block;
+            width: 250px;
+            vertical-align: top;
+            text-align: center;
+        }
+        
+        .card img {
+            width: 100%;
+            border-radius: 10px;
+        }
+        
+        button.primary {
+            background: #0b84ff;
+            border: none;
+            color: #fff;
+            padding: 8px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        
+        button.primary:hover {
+            background: #005fcc;
+        }
+        
+        input,
+        textarea,
+        select {
+            width: 100%;
+            padding: 8px;
+            margin: 6px 0;
+            border-radius: 6px;
+            border: none;
+        }
+        
+        #home {
+            text-align: center;
+            background-size: cover;
+            background-position: center;
+            border-radius: 10px;
+            padding: 40px 10px;
+            transition: 0.5s;
+        }
+        
+        #home h2 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        
+        #home p {
+            font-size: 18px;
+            line-height: 1.6;
+            max-width: 700px;
+            margin: auto;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1 id="storeName">🖥️ متجر يوسف الشمري</h1>
+    </header>
+
+    <nav>
+        <button class="tab-btn active" data-tab="home">🏠 الرئيسية</button>
+        <button class="tab-btn" data-tab="products">🛍️ المنتجات</button>
+        <button class="tab-btn" data-tab="cart">🛒 السلة</button>
+        <button class="tab-btn" data-tab="admin">⚙️ الإدارة</button>
+        <button id="toggleLang">English</button>
+        <button id="toggleCurrency">IQD</button>
+    </nav>
+
+    <main>
+        <section id="home" class="active">
+            <h2 id="homeTitle">أهلاً بكم في متجر يوسف الشمري</h2>
+            <p id="homeDesc">نوفر لكم أفضل المنتجات بأعلى جودة وأفضل الأسعار.</p>
+            <div id="homeProducts"></div>
+        </section>
+
+        <section id="products"></section>
+
+        <section id="cart">
+            <h2 id="cartTitle">سلة المشتريات</h2>
+            <div id="cartItems"></div>
+            <h3 id="buyerInfoTitle">أكمل معلوماتك:</h3>
+            <input id="buyerName" placeholder="الاسم">
+            <input id="buyerPhone" placeholder="رقم الهاتف">
+            <input id="buyerAddress" placeholder="العنوان">
+            <button class="primary" id="submitOrderBtn" onclick="submitOrder()">إرسال الطلب</button>
+        </section>
+
+        <section id="admin">
+            <h2 id="adminTitle">لوحة الإدارة</h2>
+            <button class="primary" id="adminLoginBtn" onclick="promptAdmin()">دخول كمالك</button>
+
+            <div id="adminPanel" style="display:none; margin-top:10px;">
+                <h3>تخصيص الصفحة الرئيسية</h3>
+                <input id="homeTitleInput" placeholder="عنوان الصفحة الرئيسية">
+                <textarea id="homeDescInput" placeholder="وصف الصفحة"></textarea>
+                <input id="homeBgInput" placeholder="رابط صورة الخلفية">
+                <label>لون النصوص:</label>
+                <input type="color" id="textColorInput">
+                <label>لون أزرار المنتجات:</label>
+                <input type="color" id="btnColorInput">
+                <button class="primary" onclick="saveCustomization()">💾 حفظ التخصيص</button>
+                <hr>
+
+                <h3>إضافة منتج</h3>
+                <input id="pName" placeholder="اسم المنتج">
+                <input id="pPrice" type="number" placeholder="السعر بالدينار">
+                <input id="pImage" placeholder="رابط الصورة">
+                <button class="primary" onclick="addProduct()">إضافة</button>
+                <div id="adminProductList"></div>
+                <hr>
+
+                <h3>الطلبات</h3>
+                <div id="adminOrderList"></div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        let products = JSON.parse(localStorage.getItem('products')) || [];
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        let orders = JSON.parse(localStorage.getItem('orders')) || [];
+        let lang = localStorage.getItem('lang') || 'ar';
+        let currency = localStorage.getItem('currency') || 'IQD';
+        let btnColor = localStorage.getItem('btnColor') || '#0b84ff';
+        let textColor = localStorage.getItem('textColor') || '#fff';
+        let homeBg = localStorage.getItem('homeBg') || '';
+
+        // عرض المنتجات
+        function renderProducts() {
+            const div = document.getElementById('products');
+            div.innerHTML = '';
+            products.forEach((p, i) => {
+                let price = currency === 'IQD' ? p.price.toLocaleString() + ' د.ع' : (p.price / 1460).toFixed(2) + ' $';
+                let addText = lang === 'ar' ? '🛒 أضف للسلة' : 'Add to Cart';
+                div.innerHTML += `
+      <div class="card">
+        <img src="${p.img}">
+        <h3>${p.name}</h3>
+        <p>💰 ${price}</p>
+        <button class="primary" style="background:${btnColor}" onclick="addToCart(${i})">${addText}</button>
+      </div>`;
+            });
+            renderHomeProducts();
+        }
+
+        function renderHomeProducts() {
+            const div = document.getElementById('homeProducts');
+            div.innerHTML = '';
+            products.forEach((p, i) => {
+                let price = currency === 'IQD' ? p.price.toLocaleString() + ' د.ع' : (p.price / 1460).toFixed(2) + ' $';
+                let addText = lang === 'ar' ? '🛒 أضف للسلة' : 'Add to Cart';
+                div.innerHTML += `
+      <div class="card">
+        <img src="${p.img}">
+        <h3>${p.name}</h3>
+        <p>💰 ${price}</p>
+        <button class="primary" style="background:${btnColor}" onclick="addToCart(${i})">${addText}</button>
+      </div>`;
+            });
+        }
+
+        // السلة
+        function addToCart(i) {
+            cart.push(products[i]);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            alert(lang === 'ar' ? 'تمت الإضافة إلى السلة ✅' : 'Added to cart ✅');
+            renderCart();
+        }
+
+        function renderCart() {
+            const list = document.getElementById('cartItems');
+            list.innerHTML = '';
+            if (cart.length === 0) {
+                list.innerHTML = lang === 'ar' ? '<p>السلة فارغة</p>' : '<p>Cart is empty</p>';
+                return;
+            }
+            cart.forEach((p, i) => {
+                list.innerHTML = `<div class='card'>${p.name}<br><button class='primary' onclick='removeCart(${i})'>${lang==='ar'?'إزالة':'Remove'}</button></div>`;
+            });
+        }
+
+        function removeCart(i) {
+            cart.splice(i, 1);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            renderCart();
+        }
+
+        function submitOrder() {
+            const name = document.getElementById('buyerName').value.trim();
+            const phone = document.getElementById('buyerPhone').value.trim();
+            const address = document.getElementById('buyerAddress').value.trim();
+            if (!name || !phone || !address) {
+                alert(lang === 'ar' ? 'يرجى إدخال جميع المعلومات' : 'Please fill all fields');
+                return;
+            }
+            orders.push({
+                name,
+                phone,
+                address,
+                items: [...cart]
+            });
+            localStorage.setItem('orders', JSON.stringify(orders));
+            cart = [];
+            localStorage.setItem('cart', JSON.stringify(cart));
+            renderCart();
+            renderAdminOrders();
+            alert(lang === 'ar' ? '✅ تم إرسال الطلب' : 'Order sent ✅');
+        }
+
+        // لوحة الإدارة
+        function promptAdmin() {
+            const pass = prompt(lang === 'ar' ? 'أدخل رمز المالك:' : 'Enter admin code:');
+            if (pass === 'yy@55') {
+                document.getElementById('adminPanel').style.display = 'block';
+                renderAdminProducts();
+                renderAdminOrders();
+                loadCustomization();
+            } else alert(lang === 'ar' ? 'رمز خاطئ' : 'Wrong code');
+        }
+
+        function addProduct() {
+            const name = document.getElementById('pName').value;
+            const price = parseInt(document.getElementById('pPrice').value);
+            const img = document.getElementById('pImage').value;
+            if (!name || !price) {
+                alert(lang === 'ar' ? 'أدخل الاسم والسعر' : 'Enter name and price');
+                return;
+            }
+            products.push({
+                name,
+                price,
+                img
+            });
+            localStorage.setItem('products', JSON.stringify(products));
+            renderProducts();
+            renderAdminProducts();
+        }
+
+        function renderAdminProducts() {
+            const list = document.getElementById('adminProductList');
+            list.innerHTML = '';
+            products.forEach((p, i) => {
+                list.innerHTML = `<div class='card'><h3>${p.name}</h3><button class='primary' onclick='deleteProduct(${i})'>${lang==='ar'?'🗑️ حذف':'🗑️ Delete'}</button></div>`;
+            });
+        }
+
+        function deleteProduct(i) {
+            products.splice(i, 1);
+            localStorage.setItem('products', JSON.stringify(products));
+            renderProducts();
+            renderAdminProducts();
+        }
+
+        function renderAdminOrders() {
+            const list = document.getElementById('adminOrderList');
+            list.innerHTML = '';
+            if (orders.length === 0) {
+                list.innerHTML = lang === 'ar' ? '<p>لا توجد طلبات</p>' : '<p>No orders</p>';
+                return;
+            }
+            orders.forEach((o, i) => {
+                list.innerHTML = `<div class='card'><h3>${o.name}</h3><p>${o.phone}</p><p>${o.address}</p><button class='primary' onclick='deleteOrder(${i})'>${lang==='ar'?'❌ حذف':'❌ Delete'}</button></div>`;
+            });
+        }
+
+        function deleteOrder(i) {
+            orders.splice(i, 1);
+            localStorage.setItem('orders', JSON.stringify(orders));
+            renderAdminOrders();
+        }
+
+        // تخصيص الصفحة الرئيسية والخلفيات
+        function saveCustomization() {
+            const title = document.getElementById('homeTitleInput').value;
+            const desc = document.getElementById('homeDescInput').value;
+            const bg = document.getElementById('homeBgInput').value;
+            const text = document.getElementById('textColorInput').value;
+            const btn = document.getElementById('btnColorInput').value;
+            localStorage.setItem('homeTitle', title);
+            localStorage.setItem('homeDesc', desc);
+            localStorage.setItem('homeBg', bg);
+            localStorage.setItem('textColor', text);
+            localStorage.setItem('btnColor', btn);
+            loadCustomization();
+        }
+
+        function loadCustomization() {
+            const title = localStorage.getItem('homeTitle') || 'أهلاً بكم في متجر يوسف الشمري';
+            const desc = localStorage.getItem('homeDesc') || 'نوفر لكم أفضل المنتجات بأعلى جودة وأفضل الأسعار.';
+            homeBg = localStorage.getItem('homeBg') || '';
+            textColor = localStorage.getItem('textColor') || '#fff';
+            btnColor = localStorage.getItem('btnColor') || '#0b84ff';
+            document.getElementById('homeTitle').innerText = title;
+            document.getElementById('homeDesc').innerText = desc;
+            document.body.style.color = textColor;
+            if (homeBg) document.getElementById('home').style.background = `url(${homeBg}) no-repeat center center / cover`;
+        }
+
+        // اللغة والعملة
+        document.getElementById('toggleLang').onclick = function() {
+            lang = (lang === 'ar') ? 'en' : 'ar';
+            localStorage.setItem('lang', lang);
+            updateLanguage();
+            renderProducts();
+            renderCart();
+            renderAdminOrders();
+        };
+        document.getElementById('toggleCurrency').onclick = function() {
+            currency = (currency === 'IQD') ? 'USD' : 'IQD';
+            localStorage.setItem('currency', currency);
+            document.getElementById('toggleCurrency').innerText = currency;
+            renderProducts();
+        };
+
+        function updateLanguage() {
+            if (lang === 'ar') {
+                document.getElementById('toggleLang').innerText = 'English';
+                document.querySelector('html').dir = 'rtl';
+                document.getElementById('storeName').innerText = '🖥️ متجر يوسف الشمري';
+                document.getElementById('homeTitle').innerText = localStorage.getItem('homeTitle') || 'أهلاً بكم في متجر يوسف الشمري';
+                document.getElementById('homeDesc').innerText = localStorage.getItem('homeDesc') || 'نوفر لكم أفضل المنتجات بأعلى جودة وأفضل الأسعار.';
+                document.getElementById('cartTitle').innerText = 'سلة المشتريات';
+                document.getElementById('buyerInfoTitle').innerText = 'أكمل معلوماتك:';
+                document.getElementById('submitOrderBtn').innerText = 'إرسال الطلب';
+                document.getElementById('adminTitle').innerText = 'لوحة الإدارة';
+                document.getElementById('adminLoginBtn').innerText = 'دخول كمالك';
+            } else {
+                document.getElementById('toggleLang').innerText = 'العربية';
+                document.querySelector('html').dir = 'ltr';
+                document.getElementById('storeName').innerText = '🖥️ Youssef Al-Shammari Store';
+                document.getElementById('homeTitle').innerText = localStorage.getItem('homeTitle') || 'Welcome to Youssef Al-Shammari Store';
+                document.getElementById('homeDesc').innerText = localStorage.getItem('homeDesc') || 'We offer the best products with highest quality and best prices.';
+                document.getElementById('cartTitle').innerText = 'Cart';
+                document.getElementById('buyerInfoTitle').innerText = 'Fill your info:';
+                document.getElementById('submitOrderBtn').innerText = 'Submit Order';
+                document.getElementById('adminTitle').innerText = 'Admin Panel';
+                document.getElementById('adminLoginBtn').innerText = 'Login as Admin';
+            }
+        }
+
+        // تبديل الصفحات
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                document.querySelectorAll('section').forEach(sec => sec.classList.remove('active'));
+                document.getElementById(btn.dataset.tab).classList.add('active');
+            });
+        });
+
+        // تشغيل
+        updateLanguage();
+        renderProducts();
+        renderCart();
+        renderAdminOrders();
+        loadCustomization();
+    </script>
+
+</body>
+
+</html>
