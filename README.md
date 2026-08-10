@@ -1,7 +1,7 @@
 # 🛡️ Yusuf Al-Shammari | 2usi5
 
 ### 👨‍💻 Cybersecurity Expert & Full-Stack Developer
-Welcome to my official GitHub profile. I am a Cybersecurity student at *Al-Kunooze University* and the leader of *Team Cyber* in Basra.
+Welcome to my official GitHub profile. I am a Cybersecurity student at *Al-Kunooze University* and the leader of Team saber in *Team Cyber* in Basra.
 
 ---
 
@@ -53,6 +53,7 @@ I lead a professional technical alliance in Basra:
 ---
 *   
 ### 🎮 Beyond Coding
+Professional and enthusiast of shooter games.
 - *Pro Player:* Rainbow Six Siege (Strategic Gameplay).
 - *Content Creator:* Follow my tech journey on Instagram [@2usi5](https://instagram.com).
 
