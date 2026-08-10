@@ -1,14 +1,14 @@
 # 🛡️ Yusuf Al-Shammari | 2usi5
 
-### 👨‍💻 Cybersecurity Expert & Full-Stack Developer
-Welcome to my official GitHub profile. I am a Cybersecurity student at *Al-Kunooze University* and the leader of Team saber in *Team Cyber* in Basra.
+### 👨‍💻 Cybersecurity Researcher & Full-Stack Developer
+Welcome to my official GitHub profile. I am a Cybersecurity student at *Al-Kunooze University* and the leader of Team Saber in *Team Cyber* in Basra.
 
 ---
 
 ### 🛠️ Technical Toolbox
 - *Offensive Security:* Kali Linux, Penetration Testing, Metasploit.
 - *Languages:* Python (Automation), Kotlin & Java (Android), JavaScript (Web).
-- *Hard-Skill:* Advanced Mobile & PC Hardware Repair.
+- *Hardware Skills:* Advanced Mobile & PC Hardware Repair.
 
 ---
 
