@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en" dir="ltr">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>متجر يوسف الشمري</title>
+    <title>Youssef Al-Shammari Store</title>
     <style>
         body {
             margin: 0;
@@ -151,75 +151,75 @@
 <body>
 
     <header>
-        <h1 id="storeName">🖥️ متجر يوسف الشمري</h1>
+        <h1 id="storeName">🖥️ Youssef Al-Shammari Store</h1>
     </header>
 
     <nav>
-        <button class="tab-btn active" data-tab="home">🏠 الرئيسية</button>
-        <button class="tab-btn" data-tab="products">🛍️ المنتجات</button>
-        <button class="tab-btn" data-tab="cart">🛒 السلة <span id="cartCount">0</span></button>
-        <button class="tab-btn" data-tab="admin">⚙️ الإدارة</button>
-        <button id="toggleLang">English</button>
+        <button class="tab-btn active" data-tab="home">🏠 Home</button>
+        <button class="tab-btn" data-tab="products">🛍️ Products</button>
+        <button class="tab-btn" data-tab="cart">🛒 Cart <span id="cartCount">0</span></button>
+        <button class="tab-btn" data-tab="admin">⚙️ Admin</button>
+        <button id="toggleLang">العربية</button>
         <button id="toggleCurrency">IQD</button>
-        <button id="toggleTheme" type="button">☀️ الوضع</button>
+        <button id="toggleTheme" type="button">☀️ Theme</button>
     </nav>
 
     <main>
         <section id="home" class="active">
-            <h2 id="homeTitle">أهلاً بكم في متجر يوسف الشمري</h2>
-            <p id="homeDesc">نوفر لكم أفضل المنتجات بأعلى جودة وأفضل الأسعار.</p>
+            <h2 id="homeTitle">Welcome to Youssef Al-Shammari Store</h2>
+            <p id="homeDesc">Quality computer products at fair prices.</p>
             <div id="homeProducts"></div>
         </section>
 
         <section id="products">
             <div class="section-heading">
-                <h2 id="productsTitle">المنتجات</h2>
-                <p id="productsDesc">اختر ما يناسبك وأضفه إلى السلة.</p>
-                <input id="productSearch" type="search" placeholder="ابحث عن منتج..." aria-label="البحث عن منتج">
+                <h2 id="productsTitle">Products</h2>
+                <p id="productsDesc">Choose a product and add it to your cart.</p>
+                <input id="productSearch" type="search" placeholder="Search products..." aria-label="Search products">
             </div>
         </section>
 
         <section id="cart">
-            <h2 id="cartTitle">سلة المشتريات</h2>
+            <h2 id="cartTitle">Shopping Cart</h2>
             <div id="cartItems"></div>
-            <h3 id="buyerInfoTitle">أكمل معلوماتك:</h3>
-            <input id="buyerName" placeholder="الاسم">
-            <input id="buyerPhone" placeholder="رقم الهاتف">
-            <input id="buyerAddress" placeholder="العنوان">
-            <button class="primary" id="submitOrderBtn" onclick="submitOrder()">إرسال الطلب</button>
+            <h3 id="buyerInfoTitle">Complete your information:</h3>
+            <input id="buyerName" placeholder="Full name">
+            <input id="buyerPhone" placeholder="Phone number">
+            <input id="buyerAddress" placeholder="Address">
+            <button class="primary" id="submitOrderBtn" onclick="submitOrder()">Submit order</button>
         </section>
 
         <section id="admin">
-            <h2 id="adminTitle">لوحة الإدارة</h2>
-            <button class="primary" id="adminLoginBtn" onclick="promptAdmin()">دخول كمالك</button>
+            <h2 id="adminTitle">Admin Panel</h2>
+            <button class="primary" id="adminLoginBtn" onclick="promptAdmin()">Login as admin</button>
 
             <div id="adminPanel" style="display:none; margin-top:10px;">
-                <h3>تخصيص الصفحة الرئيسية</h3>
-                <input id="homeTitleInput" placeholder="عنوان الصفحة الرئيسية">
-                <textarea id="homeDescInput" placeholder="وصف الصفحة"></textarea>
-                <input id="homeBgInput" placeholder="رابط صورة الخلفية">
-                <label>لون النصوص:</label>
+                <h3>Customize home page</h3>
+                <input id="homeTitleInput" placeholder="Home page title">
+                <textarea id="homeDescInput" placeholder="Page description"></textarea>
+                <input id="homeBgInput" placeholder="Background image URL">
+                <label>Text color:</label>
                 <input type="color" id="textColorInput">
-                <label>لون أزرار المنتجات:</label>
+                <label>Product button color:</label>
                 <input type="color" id="btnColorInput">
-                <button class="primary" onclick="saveCustomization()">💾 حفظ التخصيص</button>
+                <button class="primary" onclick="saveCustomization()">💾 Save customization</button>
                 <hr>
 
-                <h3>إضافة منتج</h3>
-                <input id="pName" placeholder="اسم المنتج">
-                <input id="pPrice" type="number" placeholder="السعر بالدينار">
-                <input id="pImage" placeholder="رابط الصورة">
-                <button class="primary" onclick="addProduct()">إضافة</button>
+                <h3>Add product</h3>
+                <input id="pName" placeholder="Product name">
+                <input id="pPrice" type="number" placeholder="Price in IQD">
+                <input id="pImage" placeholder="Image URL">
+                <button class="primary" onclick="addProduct()">Add product</button>
                 <div id="adminProductList"></div>
                 <hr>
 
-                <h3>الطلبات</h3>
+                <h3>Orders</h3>
                 <div id="adminOrderList"></div>
             </div>
         </section>
     </main>
 
-    <footer>© 2026 متجر يوسف الشمري — تجربة تجريبية محلية</footer>
+    <footer>© 2026 Youssef Al-Shammari Store — Local demo experience</footer>
 
     <script>
         const defaultProducts = [
@@ -230,7 +230,7 @@
         let products = JSON.parse(localStorage.getItem('products')) || defaultProducts;
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
         let orders = JSON.parse(localStorage.getItem('orders')) || [];
-        let lang = localStorage.getItem('lang') || 'ar';
+        let lang = localStorage.getItem('lang') || 'en';
         let currency = localStorage.getItem('currency') || 'IQD';
         let btnColor = localStorage.getItem('btnColor') || '#0b84ff';
         let textColor = localStorage.getItem('textColor') || '#fff';
@@ -417,8 +417,8 @@
         }
 
         function loadCustomization() {
-            const title = localStorage.getItem('homeTitle') || 'أهلاً بكم في متجر يوسف الشمري';
-            const desc = localStorage.getItem('homeDesc') || 'نوفر لكم أفضل المنتجات بأعلى جودة وأفضل الأسعار.';
+            const title = localStorage.getItem('homeTitle') || (lang === 'en' ? 'Welcome to Youssef Al-Shammari Store' : 'أهلاً بكم في متجر يوسف الشمري');
+            const desc = localStorage.getItem('homeDesc') || (lang === 'en' ? 'Quality computer products at fair prices.' : 'نوفر لكم أفضل المنتجات بأعلى جودة وأفضل الأسعار.');
             homeBg = localStorage.getItem('homeBg') || '';
             textColor = localStorage.getItem('textColor') || '#fff';
             btnColor = localStorage.getItem('btnColor') || '#0b84ff';
@@ -448,16 +448,24 @@
             isLightTheme = !isLightTheme;
             document.body.classList.toggle('light', isLightTheme);
             localStorage.setItem('theme', isLightTheme ? 'light' : 'dark');
-            this.textContent = isLightTheme ? '🌙 الوضع' : '☀️ الوضع';
+            this.textContent = isLightTheme ? '🌙 Theme' : '☀️ Theme';
         };
 
         function updateLanguage() {
             if (lang === 'ar') {
                 document.getElementById('toggleLang').innerText = 'English';
                 document.querySelector('html').dir = 'rtl';
+                document.querySelector('html').lang = 'ar';
                 document.getElementById('storeName').innerText = '🖥️ متجر يوسف الشمري';
                 document.getElementById('homeTitle').innerText = localStorage.getItem('homeTitle') || 'أهلاً بكم في متجر يوسف الشمري';
                 document.getElementById('homeDesc').innerText = localStorage.getItem('homeDesc') || 'نوفر لكم أفضل المنتجات بأعلى جودة وأفضل الأسعار.';
+                document.querySelector('[data-tab="home"]').innerText = '🏠 الرئيسية';
+                document.querySelector('[data-tab="products"]').innerText = '🛍️ المنتجات';
+                document.querySelector('[data-tab="cart"]').innerHTML = '🛒 السلة <span id="cartCount">' + cart.length + '</span>';
+                document.querySelector('[data-tab="admin"]').innerText = '⚙️ الإدارة';
+                document.getElementById('productsTitle').innerText = 'المنتجات';
+                document.getElementById('productsDesc').innerText = 'اختر ما يناسبك وأضفه إلى السلة.';
+                document.getElementById('productSearch').placeholder = 'ابحث عن منتج...';
                 document.getElementById('cartTitle').innerText = 'سلة المشتريات';
                 document.getElementById('buyerInfoTitle').innerText = 'أكمل معلوماتك:';
                 document.getElementById('submitOrderBtn').innerText = 'إرسال الطلب';
@@ -466,15 +474,25 @@
             } else {
                 document.getElementById('toggleLang').innerText = 'العربية';
                 document.querySelector('html').dir = 'ltr';
+                document.querySelector('html').lang = 'en';
                 document.getElementById('storeName').innerText = '🖥️ Youssef Al-Shammari Store';
                 document.getElementById('homeTitle').innerText = localStorage.getItem('homeTitle') || 'Welcome to Youssef Al-Shammari Store';
-                document.getElementById('homeDesc').innerText = localStorage.getItem('homeDesc') || 'We offer the best products with highest quality and best prices.';
-                document.getElementById('cartTitle').innerText = 'Cart';
-                document.getElementById('buyerInfoTitle').innerText = 'Fill your info:';
-                document.getElementById('submitOrderBtn').innerText = 'Submit Order';
+                document.getElementById('homeDesc').innerText = localStorage.getItem('homeDesc') || 'Quality computer products at fair prices.';
+                document.querySelector('[data-tab="home"]').innerText = '🏠 Home';
+                document.querySelector('[data-tab="products"]').innerText = '🛍️ Products';
+                document.querySelector('[data-tab="cart"]').innerHTML = '🛒 Cart <span id="cartCount">' + cart.length + '</span>';
+                document.querySelector('[data-tab="admin"]').innerText = '⚙️ Admin';
+                document.getElementById('productsTitle').innerText = 'Products';
+                document.getElementById('productsDesc').innerText = 'Choose a product and add it to your cart.';
+                document.getElementById('productSearch').placeholder = 'Search products...';
+                document.getElementById('cartTitle').innerText = 'Shopping Cart';
+                document.getElementById('buyerInfoTitle').innerText = 'Complete your information:';
+                document.getElementById('submitOrderBtn').innerText = 'Submit order';
                 document.getElementById('adminTitle').innerText = 'Admin Panel';
-                document.getElementById('adminLoginBtn').innerText = 'Login as Admin';
+                document.getElementById('adminLoginBtn').innerText = 'Login as admin';
             }
+            document.getElementById('toggleTheme').textContent = isLightTheme ? '🌙 Theme' : '☀️ Theme';
+            updateCartCount();
         }
 
         // تبديل الصفحات
