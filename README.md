@@ -14,7 +14,7 @@
 </p>
 
 <p align="center">
-  <a href="./index.html"><strong>▶ Open the interactive profile showcase</strong></a>
+  <a href="https://htmlpreview.github.io/?https://github.com/2usi5/2usi5/blob/main/index.html"><strong>▶ Open the interactive profile showcase</strong></a>
 </p>
 
 ## About Me
