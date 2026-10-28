@@ -13,6 +13,10 @@
   <a href="https://www.google.com/maps/search/Basra%2C%20Iraq"><img src="https://img.shields.io/badge/Basra-Iraq-0f766e?style=for-the-badge" alt="Location"></a>
 </p>
 
+<p align="center">
+  <a href="./index.html"><strong>▶ Open the interactive profile showcase</strong></a>
+</p>
+
 ## About Me
 
 I am **Youssef Al-Shammari**, a cybersecurity student and full-stack developer based in Basra, Iraq. I build practical cybersecurity tools, Android applications, and accessible web experiences.
