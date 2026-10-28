@@ -132,6 +132,12 @@
         .empty-state { color: #cbd5e1; padding: 30px; }
         .section-heading { max-width: 900px; margin: 0 auto 18px; }
         .danger { background: #b91c1c !important; }
+        #cartCount { display: inline-block; min-width: 20px; padding: 2px 6px; border-radius: 999px; background: #f59e0b; color: #111827; font-size: 12px; font-weight: bold; }
+        body.light { background: #f1f5f9; color: #0f172a; }
+        body.light .card { background: #fff; border-color: #cbd5e1; }
+        body.light nav { background: #e2e8f0; }
+        body.light nav button { color: #0f172a; }
+        body.light footer { background: #e2e8f0; }
         footer { text-align: center; color: #94a3b8; padding: 22px; background: #0b1120; }
         @media (max-width: 600px) {
             header h1 { font-size: 22px; }
@@ -151,10 +157,11 @@
     <nav>
         <button class="tab-btn active" data-tab="home">🏠 الرئيسية</button>
         <button class="tab-btn" data-tab="products">🛍️ المنتجات</button>
-        <button class="tab-btn" data-tab="cart">🛒 السلة</button>
+        <button class="tab-btn" data-tab="cart">🛒 السلة <span id="cartCount">0</span></button>
         <button class="tab-btn" data-tab="admin">⚙️ الإدارة</button>
         <button id="toggleLang">English</button>
         <button id="toggleCurrency">IQD</button>
+        <button id="toggleTheme" type="button">☀️ الوضع</button>
     </nav>
 
     <main>
@@ -168,6 +175,7 @@
             <div class="section-heading">
                 <h2 id="productsTitle">المنتجات</h2>
                 <p id="productsDesc">اختر ما يناسبك وأضفه إلى السلة.</p>
+                <input id="productSearch" type="search" placeholder="ابحث عن منتج..." aria-label="البحث عن منتج">
             </div>
         </section>
 
@@ -227,6 +235,8 @@
         let btnColor = localStorage.getItem('btnColor') || '#0b84ff';
         let textColor = localStorage.getItem('textColor') || '#fff';
         let homeBg = localStorage.getItem('homeBg') || '';
+        let searchTerm = '';
+        let isLightTheme = localStorage.getItem('theme') === 'light';
 
         function escapeHTML(value) {
             return String(value ?? '').replace(/[&<>'"]/g, char => ({
@@ -246,8 +256,22 @@
             const div = document.getElementById('products');
             const heading = div.querySelector('.section-heading');
             div.innerHTML = heading ? heading.outerHTML : '';
-            div.insertAdjacentHTML('beforeend', products.length ? products.map(productMarkup).join('') : '<p class="empty-state">لا توجد منتجات حاليًا.</p>');
+            const visibleProducts = products
+                .map((product, index) => ({ product, index }))
+                .filter(({ product }) => product.name.toLowerCase().includes(searchTerm.toLowerCase()));
+            div.insertAdjacentHTML('beforeend', visibleProducts.length ? visibleProducts.map(({ product, index }) => productMarkup(product, index)).join('') : '<p class="empty-state">لا توجد منتجات مطابقة للبحث.</p>');
+            bindSearch();
             renderHomeProducts();
+        }
+
+        function bindSearch() {
+            const input = document.getElementById('productSearch');
+            if (!input) return;
+            input.value = searchTerm;
+            input.addEventListener('input', function(event) {
+                searchTerm = event.target.value.trim();
+                renderProducts();
+            });
         }
 
         function renderHomeProducts() {
@@ -259,8 +283,21 @@
         function addToCart(i) {
             cart.push(products[i]);
             localStorage.setItem('cart', JSON.stringify(cart));
-            alert(lang === 'ar' ? 'تمت الإضافة إلى السلة ✅' : 'Added to cart ✅');
+            updateCartCount();
+            showToast(lang === 'ar' ? 'تمت الإضافة إلى السلة ✅' : 'Added to cart ✅');
             renderCart();
+        }
+
+        function updateCartCount() {
+            document.getElementById('cartCount').textContent = cart.length;
+        }
+
+        function showToast(message) {
+            const toast = document.createElement('div');
+            toast.textContent = message;
+            toast.style.cssText = 'position:fixed;bottom:24px;right:24px;z-index:10;background:#0f766e;color:#fff;padding:12px 18px;border-radius:10px;box-shadow:0 8px 24px #0005';
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 2200);
         }
 
         function renderCart() {
@@ -276,6 +313,7 @@
         function removeCart(i) {
             cart.splice(i, 1);
             localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartCount();
             renderCart();
         }
 
@@ -296,6 +334,7 @@
             localStorage.setItem('orders', JSON.stringify(orders));
             cart = [];
             localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartCount();
             renderCart();
             renderAdminOrders();
             alert(lang === 'ar' ? '✅ تم إرسال الطلب' : 'Order sent ✅');
@@ -405,6 +444,13 @@
             renderProducts();
         };
 
+        document.getElementById('toggleTheme').onclick = function() {
+            isLightTheme = !isLightTheme;
+            document.body.classList.toggle('light', isLightTheme);
+            localStorage.setItem('theme', isLightTheme ? 'light' : 'dark');
+            this.textContent = isLightTheme ? '🌙 الوضع' : '☀️ الوضع';
+        };
+
         function updateLanguage() {
             if (lang === 'ar') {
                 document.getElementById('toggleLang').innerText = 'English';
@@ -443,6 +489,9 @@
 
         // تشغيل
         updateLanguage();
+        document.body.classList.toggle('light', isLightTheme);
+        document.getElementById('toggleTheme').textContent = isLightTheme ? '🌙 الوضع' : '☀️ الوضع';
+        updateCartCount();
         renderProducts();
         renderCart();
         renderAdminOrders();
