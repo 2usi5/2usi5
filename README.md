@@ -85,8 +85,8 @@ I lead a technical team in Basra focused on cybersecurity, tool development, net
 - Ali Fadel — Technical support.
 - Hussein Alaa — Hardware programming.
 - Alaa Jabbar — Media and maintenance.
-- Murtadha Asaad (`cq8ik1`) — Software developer.
-- Haider Ibrahim (`cys7h`) — Field support and assistance.
+- Murtadha Asaad (`cq8ik1`) — Software development and field support.
+- Haider Ibrahim (`cys7h`) — Software development and field support.
 
 ## Contact
 
