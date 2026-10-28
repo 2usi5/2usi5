@@ -1,4 +1,12 @@
-# يوسف الشمري | 2usi5
+<p align="center">
+  <img src="./assets/profile-banner.gif" alt="Animated 2usi5 cybersecurity profile banner" width="100%">
+</p>
+
+<h1 align="center">يوسف الشمري | 2usi5</h1>
+
+<p align="center">
+  <strong>Cybersecurity Student · Full‑Stack Developer · Hardware Specialist</strong>
+</p>
 
 <div dir="rtl">
 
