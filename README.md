@@ -21,6 +21,12 @@
 
 I am **Youssef Al-Shammari**, a cybersecurity student and full-stack developer based in Basra, Iraq. I build practical cybersecurity tools, Android applications, and accessible web experiences.
 
+## Education and Public Profile
+
+- **Education:** Al-Kunooze University.
+- **Location:** Basra, Iraq.
+- **LinkedIn:** [linkedin.com/in/2usi5](https://www.linkedin.com/in/2usi5/)
+
 ## Professional Experience
 
 ### Al Mukhls App — Application Manager & Developer
@@ -103,5 +109,6 @@ I lead a technical team in Basra focused on cybersecurity, tool development, net
 ## Contact
 
 - GitHub: [@2usi5](https://github.com/2usi5)
+- LinkedIn: [Youssef Al-Shammari](https://www.linkedin.com/in/2usi5/)
 - Instagram: [@2usi5](https://instagram.com/2usi5)
 - Location: Basra, Iraq
