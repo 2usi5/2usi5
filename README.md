@@ -2,54 +2,52 @@
   <img src="./assets/profile-banner.gif" alt="Animated 2usi5 cybersecurity profile banner" width="100%">
 </p>
 
-<h1 align="center">يوسف الشمري | 2usi5</h1>
+<h1 align="center">Youssef Al-Shammari | 2usi5</h1>
 
 <p align="center">
-  <strong>Cybersecurity Student · Full‑Stack Developer · Hardware Specialist</strong>
+  <strong>Cybersecurity Student · Full-Stack Developer · Hardware Specialist</strong>
 </p>
 
-<div dir="rtl">
+<p align="center">
+  <a href="https://github.com/2usi5"><img src="https://img.shields.io/badge/GitHub-2usi5-181717?style=for-the-badge&logo=github" alt="GitHub"></a>
+  <a href="https://www.google.com/maps/search/Basra%2C%20Iraq"><img src="https://img.shields.io/badge/Basra-Iraq-0f766e?style=for-the-badge" alt="Location"></a>
+</p>
 
-## مرحبًا بك في مستودعي
+## About Me
 
-أنا **يوسف الشمري**، طالب أمن سيبراني ومطوّر Full‑Stack من البصرة، العراق. أعمل على بناء أدوات عملية في الأمن السيبراني، تطبيقات أندرويد، وتجارب ويب عربية سهلة الاستخدام.
+I am **Youssef Al-Shammari**, a cybersecurity student and full-stack developer based in Basra, Iraq. I build practical cybersecurity tools, Android applications, and accessible web experiences.
 
-[![GitHub](https://img.shields.io/badge/GitHub-2usi5-181717?style=for-the-badge&logo=github)](https://github.com/2usi5)
-[![Location](https://img.shields.io/badge/البصرة-العراق-0f766e?style=for-the-badge)](https://www.google.com/maps/search/Basra%2C%20Iraq)
+## Skills
 
-</div>
-
-## المهارات
-
-| المجال | التقنيات والخبرة |
+| Area | Technologies and experience |
 | --- | --- |
-| الأمن السيبراني | Kali Linux، اختبار الاختراق، Nmap، Metasploit، تحليل الخدمات والشبكات |
-| البرمجة | Python، Kotlin، Java، JavaScript، HTML، CSS |
-| أندرويد | بناء واجهات Android، فحص الروابط والبريد، الإشعارات الأمنية |
-| الويب | صفحات RTL، متاجر Front‑end، التخزين المحلي، تصميم متجاوب |
-| العتاد | صيانة الهواتف والحاسوب وتشخيص الأعطال |
+| Cybersecurity | Kali Linux, penetration testing, Nmap, Metasploit, service and network analysis |
+| Programming | Python, Kotlin, Java, JavaScript, HTML, CSS |
+| Android | Android UI development, link and email checks, security notifications |
+| Web development | RTL-ready pages, front-end stores, local storage, responsive design |
+| Hardware | Smartphone and computer repair and diagnostics |
 
-## المشاريع الموجودة في المستودع
+## Projects
 
-### متجر يوسف الشمري
+### Youssef Al-Shammari Store
 
-صفحة متجر تعمل من المتصفح وتبدأ باللغة الإنجليزية، مع دعم التبديل إلى العربية، وتحتوي على عرض المنتجات، السلة، نموذج الطلب، لوحة إدارة محلية، تبديل اللغة والعملة، وتصميم متجاوب.
+A browser-based computer store that starts in English and supports Arabic. It includes product browsing, a shopping cart, order form, local admin panel, language and currency switching, live search, theme switching, and responsive design.
 
-> الملف الأساسي: `Youssef Al-Shammari Store`
+> Main file: `Youssef Al-Shammari Store`
 
 ### Security Guard App
 
-نموذج أولي لتطبيق Android بلغة Kotlin لفحص مؤشرات أولية مثل كلمات شائعة في رسائل التصيد، قوة كلمة المرور، مؤشرات خطرة في الروابط، التطبيقات المثبتة وحالة Wi‑Fi.
+An Android prototype written in Kotlin that checks basic security indicators such as common phishing terms, password strength, suspicious link keywords, installed applications, and Wi-Fi status.
 
-> الملف: `Security-Guard-App`
+> File: `Security-Guard-App`
 
 ### STORE2
 
-نسخة أقدم مبسطة من تجربة المتجر محفوظة للمقارنة والرجوع إليها.
+An older, simplified store prototype kept for comparison and reference.
 
-## التشغيل محليًا
+## Run Locally
 
-لا يحتاج المتجر إلى خادم أو حزم خارجية:
+The store does not require a backend or external packages:
 
 ```bash
 git clone https://github.com/2usi5/2usi5.git
@@ -57,33 +55,35 @@ cd 2usi5
 python3 -m http.server 8000
 ```
 
-ثم افتح `http://localhost:8000/Youssef%20Al-Shammari%20Store` في المتصفح.
+Then open:
 
-## ملاحظات أمنية
+```text
+http://localhost:8000/Youssef%20Al-Shammari%20Store
+```
 
-- هذا المتجر **واجهة تجريبية Front‑end فقط**؛ الطلبات تحفظ في متصفح المستخدم ولا تُرسل إلى خادم.
-- بيانات الدخول الإدارية في الواجهة الأمامية ليست حماية حقيقية، لذلك لا تستخدم المشروع لمعالجة بيانات عملاء حقيقية قبل إضافة Backend ومصادقة آمنة.
-- لا تضع كلمات مرور أو مفاتيح API أو بيانات دفع داخل ملفات المستودع.
+## Security Notes
 
-## الشهادة
+- The store is a **front-end demo**; orders are saved in the user's browser and are not sent to a server.
+- The admin login is client-side only and is not real security. Add a secure backend and authentication before handling real customer data.
+- Never store passwords, API keys, or payment information in this repository.
 
-أكملت شهادة أساسيات الأمن السيبراني من Hackviser، مع تدريب عملي على فحص الشبكات والخدمات وقواعد البيانات ومفاهيم الاختبار الأخلاقي.
+## Certification
+
+I completed a cybersecurity fundamentals certification from Hackviser, with practical training in network and service scanning, databases, and ethical hacking concepts.
 
 ## Team Cyber
 
-أقود فريقًا تقنيًا في البصرة يهتم بالأمن السيبراني، تطوير الأدوات، الشبكات، الدعم الفني وصيانة الأجهزة.
+I lead a technical team in Basra focused on cybersecurity, tool development, networking, technical support, and hardware maintenance.
 
-- i9gkc — شريك بحث أمني وتطوير أدوات.
-- Khalil — متخصص شبكات.
-- Ahmed Hazem — أمن سيبراني.
-- Ali Fadel — دعم فني.
-- Hussein Alaa — برمجة عتاد.
-- Alaa Jabbar — إعلام وصيانة.
+- i9gkc — Security research partner and tool development.
+- Khalil — Network specialist.
+- Ahmed Hazem — Cybersecurity.
+- Ali Fadel — Technical support.
+- Hussein Alaa — Hardware programming.
+- Alaa Jabbar — Media and maintenance.
 
-## تواصل
+## Contact
 
 - GitHub: [@2usi5](https://github.com/2usi5)
 - Instagram: [@2usi5](https://instagram.com/2usi5)
-- الموقع: البصرة، العراق
-
-</div>
+- Location: Basra, Iraq
