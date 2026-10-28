@@ -1,60 +1,81 @@
-# 🛡️ Yusuf Al-Shammari | 2usi5
+# يوسف الشمري | 2usi5
 
-### 👨‍💻 Cybersecurity Researcher & Full-Stack Developer
-Welcome to my official GitHub profile. I am a Cybersecurity student at *Al-Kunooze University* and the leader of Team Saber in *Team Cyber* in Basra.
+<div dir="rtl">
 
----
+## مرحبًا بك في مستودعي
 
-### 🛠️ Technical Toolbox
-- *Offensive Security:* Kali Linux, Penetration Testing, Metasploit.
-- *Languages:* Python (Automation), Kotlin & Java (Android), JavaScript (Web).
-- *Hardware Skills:* Advanced Mobile & PC Hardware Repair.
+أنا **يوسف الشمري**، طالب أمن سيبراني ومطوّر Full‑Stack من البصرة، العراق. أعمل على بناء أدوات عملية في الأمن السيبراني، تطبيقات أندرويد، وتجارب ويب عربية سهلة الاستخدام.
 
----
+[![GitHub](https://img.shields.io/badge/GitHub-2usi5-181717?style=for-the-badge&logo=github)](https://github.com/2usi5)
+[![Location](https://img.shields.io/badge/البصرة-العراق-0f766e?style=for-the-badge)](https://www.google.com/maps/search/Basra%2C%20Iraq)
 
-### 📂 Featured Projects
-*   *Falcon Tek Store:* Full e-commerce system development.
-*   *Security Guard App:* Android-based malware detection & Gmail protection.
+</div>
 
----
-## 🎓 Cybersecurity Certification – Hackviser
+## المهارات
 
-I successfully completed a cybersecurity certification from Hackviser, where I developed practical skills in ethical hacking and system analysis.
+| المجال | التقنيات والخبرة |
+| --- | --- |
+| الأمن السيبراني | Kali Linux، اختبار الاختراق، Nmap، Metasploit، تحليل الخدمات والشبكات |
+| البرمجة | Python، Kotlin، Java، JavaScript، HTML، CSS |
+| أندرويد | بناء واجهات Android، فحص الروابط والبريد، الإشعارات الأمنية |
+| الويب | صفحات RTL، متاجر Front‑end، التخزين المحلي، تصميم متجاوب |
+| العتاد | صيانة الهواتف والحاسوب وتشخيص الأعطال |
 
-During this certification, I gained hands-on experience in:
-- 🔍 Network scanning and enumeration (Nmap)  
-- 🛠️ Identifying open ports and running services  
-- 🗄️ Working with databases and executing SQL queries  
-- 🛡️ Understanding different hacker types (white-hat, gray-hat, black-hat)  
+## المشاريع الموجودة في المستودع
 
-This certification reflects my dedication to learning cybersecurity and building real-world technical skills.
-Certificate file [شهادة اساسيات الامن السيبرانيhackviser.pdf](https://github.com/user-attachments/files/30358066/hackviser.pdf)
+### متجر يوسف الشمري
 
----
+صفحة متجر عربية تعمل من المتصفح وتحتوي على عرض المنتجات، السلة، نموذج الطلب، لوحة إدارة محلية، تبديل اللغة والعملة، وتصميم متجاوب.
 
-### 👥 Team Cyber (Leadership)
-I lead a professional technical alliance in Basra:
-*i9gkc* - Security Research Partner & Co-Learner (Penetration Testing & Tool Development).
-*   *Khalil (ursj_)* - Network Specialist.
-*   *Ahmed Hazem (ax0_iq)* - Cyber Security.
-*   *Ali Fadel (as.95r)* - Technical Support.
-*   *Hussein Alaa (56t.rt)* - Hardware Programmer.
-*   *Alaa Jabbar (a.04b)* - Media & Maintenance.
+> الملف الأساسي: `Youssef Al-Shammari Store`
 
----
+### Security Guard App
 
-### 🏢 Physical Base & Operations
-*   **Headquarters:** Max Phone (ماكس فون)
-*   **Owner:** Eng. Ali Fadel (*as.95r*)
-*   **Team Role:** Serves as the official field headquarters where the entire team collaborates on cyber operations, hardware, and software maintenance, led by Yusuf Al-Shammari (*2usi5*), with Hardware Specialist Hussein Alaa (*56t.rt*), and Maintenance & Media Specialist Alaa Jabbar (*a.04b*).
-*   **Specialty:** Smartphone Hardware & Software Maintenance.
-*   **Location:** Iraq, Basra, Al-Jumhouriya - Offices Street (شارع المكاتب).
-*   
----
-*   
-### 🎮 Beyond Coding
-Professional and enthusiast of shooter games.
-- *Pro Player:* Rainbow Six Siege (Strategic Gameplay).
-- *Content Creator:* Follow my tech journey on Instagram [@2usi5](https://instagram.com).
+نموذج أولي لتطبيق Android بلغة Kotlin لفحص مؤشرات أولية مثل كلمات شائعة في رسائل التصيد، قوة كلمة المرور، مؤشرات خطرة في الروابط، التطبيقات المثبتة وحالة Wi‑Fi.
 
-📍 Based in Basra, Iraq
+> الملف: `Security-Guard-App`
+
+### STORE2
+
+نسخة أقدم مبسطة من تجربة المتجر محفوظة للمقارنة والرجوع إليها.
+
+## التشغيل محليًا
+
+لا يحتاج المتجر إلى خادم أو حزم خارجية:
+
+```bash
+git clone https://github.com/2usi5/2usi5.git
+cd 2usi5
+python3 -m http.server 8000
+```
+
+ثم افتح `http://localhost:8000/Youssef%20Al-Shammari%20Store` في المتصفح.
+
+## ملاحظات أمنية
+
+- هذا المتجر **واجهة تجريبية Front‑end فقط**؛ الطلبات تحفظ في متصفح المستخدم ولا تُرسل إلى خادم.
+- بيانات الدخول الإدارية في الواجهة الأمامية ليست حماية حقيقية، لذلك لا تستخدم المشروع لمعالجة بيانات عملاء حقيقية قبل إضافة Backend ومصادقة آمنة.
+- لا تضع كلمات مرور أو مفاتيح API أو بيانات دفع داخل ملفات المستودع.
+
+## الشهادة
+
+أكملت شهادة أساسيات الأمن السيبراني من Hackviser، مع تدريب عملي على فحص الشبكات والخدمات وقواعد البيانات ومفاهيم الاختبار الأخلاقي.
+
+## Team Cyber
+
+أقود فريقًا تقنيًا في البصرة يهتم بالأمن السيبراني، تطوير الأدوات، الشبكات، الدعم الفني وصيانة الأجهزة.
+
+- i9gkc — شريك بحث أمني وتطوير أدوات.
+- Khalil — متخصص شبكات.
+- Ahmed Hazem — أمن سيبراني.
+- Ali Fadel — دعم فني.
+- Hussein Alaa — برمجة عتاد.
+- Alaa Jabbar — إعلام وصيانة.
+
+## تواصل
+
+- GitHub: [@2usi5](https://github.com/2usi5)
+- Instagram: [@2usi5](https://instagram.com/2usi5)
+- الموقع: البصرة، العراق
+
+</div>
